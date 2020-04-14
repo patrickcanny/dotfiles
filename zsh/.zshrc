@@ -1,3 +1,4 @@
+export TERM="xterm-256color"
 POWERLEVEL9K_MODE='nerdfont-complete'
 source  ~/powerlevel9k/powerlevel9k.zsh-theme
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh dir vcs newline status)
@@ -8,7 +9,6 @@ alias ls='ls -G'
 HOMEBREW_FOLDER="/usr/local/share"
 source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
-TERM=screen-256color
 USER=patrickcanny
 roll () 
 { 
@@ -21,6 +21,7 @@ roll ()
         echo $(($N * $1));
     fi
 }
+alias vimrc='vi ~/.vimrc'
 alias :q='exit'
 alias ..='cd ..'
 alias ..2='cd ../../'
@@ -63,7 +64,9 @@ alias nlink='npm link'
 alias nodels='npm ls'
 alias o='open'
 alias pip='pip3'
-tmux
 export ENVIRONMENT_NAME="localhost"
 export ENVIRONMENT_NAME="localhost"
 PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+PATH="/usr/local/bin$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+tmux
