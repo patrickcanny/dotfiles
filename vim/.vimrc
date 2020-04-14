@@ -16,7 +16,6 @@ Plugin 'ycm-core/YouCompleteMe'
 " END PLUGINS
 call vundle#end()
 " END VUNDLE
-
 set history=500
 filetype plugin on
 filetype indent on
