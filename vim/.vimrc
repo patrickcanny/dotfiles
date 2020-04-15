@@ -13,6 +13,9 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'shinchu/lightline-gruvbox.vim'
 Plugin 'vim-scripts/mru.vim'
 Plugin 'ycm-core/YouCompleteMe'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-commentary'
 " END PLUGINS
 call vundle#end()
 " END VUNDLE
@@ -89,6 +92,9 @@ set guioptions-=L
 
 " fast file open
 nnoremap <leader>s :e **/
+
+inoremap {<CR> {<CR>}<C-o>0
+inoremap [<CR> [<CR>]<C-o>0
 
 " fast fugitive
 nnoremap <leader>gs :Gstatus<CR>
