@@ -70,3 +70,5 @@ PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 PATH="/usr/local/bin$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 tmux
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
