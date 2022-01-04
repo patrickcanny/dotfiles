@@ -17,6 +17,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-commentary'
 Plugin 'doums/coBra'
+Plugin 'ternjs/tern_for_vim'
 " END PLUGINS
 call vundle#end()
 " END VUNDLE
