@@ -31,7 +31,7 @@ alias FLX='python3 manage.py runserver 8080'
 alias fv='npm run watch'
 alias back='cd -'
 alias bashrc='vi ~/.zshrc'
-alias reload='source ~/.zshrc'
+alias reload='source ~/dotfiles/zsh/.zshrc'
 alias be='bundle exec'
 alias bers='bundle exec rake spec'
 alias bess='bundle exec spec spec'
@@ -66,6 +66,19 @@ alias nodels='npm ls'
 alias o='open'
 alias dcu='docker-compose up'
 alias lacrc='vi ~/lacunarc'
+
+# Roll
+roll () 
+{ 
+    if [ "$#" -ne 2 ]; then
+        echo "USAGE: roll <NUMBER OF DICE TO ROLL> d<NUMBER OF SIDES>";
+    else
+        echo "Rolling $1 $2...";
+        NUMBER=$(echo "$2"|sed 's/[^0-9]*//g');
+        N=$(((RANDOM % $NUMBER) + 1));
+        echo $(($N * $1));
+    fi
+}
 
 # Requires powerlevel10k directory in root, should move to dotfiles
 source ~/powerlevel10k/powerlevel10k.zsh-theme
