@@ -7,17 +7,24 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' 
 Plugin 'morhetz/gruvbox'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-sleuth'
 Plugin 'preservim/nerdtree'
 Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'shinchu/lightline-gruvbox.vim'
 Plugin 'vim-scripts/mru.vim'
 Plugin 'ycm-core/YouCompleteMe'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-commentary'
 Plugin 'doums/coBra'
 Plugin 'ternjs/tern_for_vim'
+Plugin 'neoclide/vim-jsx-improve'
+Plugin 'fatih/vim-go'
+Plugin 'sbdchd/neoformat'
+Plugin 'ctrlpvim/ctrlp.vim'
 " END PLUGINS
 call vundle#end()
 " END VUNDLE
@@ -74,10 +81,6 @@ endif
 set expandtab
 set smarttab
 
-" tabs
-set tabstop=4
-set shiftwidth=4
-
 " 500 character lines
 set lbr
 set tw=500
@@ -100,15 +103,18 @@ inoremap {<CR> {<CR>}<C-o>0
 inoremap [<CR> [<CR>]<C-o>0
 
 " fast fugitive
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gp :Gpush<CR>
-nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gs :Git<CR>
+nnoremap <leader>gc :Git commit<CR>
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>gd :Git diff<CR>
 
 " tab switch
 nnoremap <leader>n gt
 nnoremap <leader>N gT
 nnoremap <leader>t :tabclose<CR>
+
+" quick switch to react
+nnoremap <leader>re :set filetype=javascriptreact<CR>
 
 " visual stuff
 " star search 
@@ -148,6 +154,7 @@ map <leader>vv :vsplit<CR>
 " NerdTree
 map <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeShowHidden=1
 
 " Lightline
 let g:lightline = {
@@ -163,6 +170,16 @@ let g:lightline.colorscheme = 'gruvbox'
 
 " MRU
 nnoremap <leader>f :MRU<CR>
+
+" fzf
+set rtp+=/usr/local/opt/fzf
+
+" Prettier
+autocmd BufWritePre *.js Neoformat
+
+" CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 " braces?
 let s:pairs={
