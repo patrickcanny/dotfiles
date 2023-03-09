@@ -1,26 +1,27 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Nav
+bindkey -v
+
+# Colors/Theme
 export TERM="xterm-256color"
-POWERLEVEL9K_MODE='nerdfont-complete'
-source  ~/powerlevel9k/powerlevel9k.zsh-theme
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh dir vcs newline status)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-alias ls='ls -G'
+
 # Load Zsh tools for syntax highlighting and autosuggestions
 HOMEBREW_FOLDER="/usr/local/share"
 source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
-USER=patrickcanny
-roll () 
-{ 
-    if [ "$#" -ne 2 ]; then
-        echo "USAGE: roll <NUMBER OF DICE TO ROLL> d<NUMBER OF SIDES>";
-    else
-        echo "Rolling $1 $2...";
-        NUMBER=$(echo "$2"|sed 's/[^0-9]*//g');
-        N=$(((RANDOM % $NUMBER) + 1));
-        echo $(($N * $1));
-    fi
-}
+USER=cannyp
+
+# nvm stuff
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+# alias'
 alias vimrc='vi ~/.vimrc'
 alias :q='exit'
 alias ..='cd ..'
@@ -63,12 +64,21 @@ alias mv='mv -i'
 alias nlink='npm link'
 alias nodels='npm ls'
 alias o='open'
-alias pip='pip3'
-export ENVIRONMENT_NAME="localhost"
-export ENVIRONMENT_NAME="localhost"
-PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
-PATH="/usr/local/bin$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-tmux
+alias dcu='docker-compose up'
+alias lacrc='vi ~/lacunarc'
+
+# Requires powerlevel10k directory in root, should move to dotfiles
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+autoload -Uz compinit && compinit
+
+# Path
+export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=/Users/cannyp/Library/Python/2.7/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# requires fuck
+eval $(thefuck --alias)
