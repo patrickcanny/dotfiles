@@ -12,7 +12,7 @@ bindkey -v
 export TERM="xterm-256color"
 
 # Load Zsh tools for syntax highlighting and autosuggestions
-HOMEBREW_FOLDER="/usr/local/share"
+HOMEBREW_FOLDER="/opt/homebrew/share"
 source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
 USER=cannyp
@@ -80,18 +80,19 @@ roll ()
     fi
 }
 
-# Requires powerlevel10k directory in root, should move to dotfiles
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-autoload -Uz compinit && compinit
 
-# Path
-export PATH=$PATH:$(go env GOPATH)/bin
-export PATH=/Users/cannyp/Library/Python/2.7/bin:$PATH
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# requires fuck
-eval $(thefuck --alias)
+# pnpm
+export PNPM_HOME="/Users/patrickcanny/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
