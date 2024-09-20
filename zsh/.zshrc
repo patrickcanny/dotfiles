@@ -67,6 +67,9 @@ alias o='open'
 alias dcu='docker-compose up'
 alias lacrc='vi ~/lacunarc'
 
+# Git Completion
+autoload -Uz compinit && compinit
+
 # Roll
 roll () 
 { 
